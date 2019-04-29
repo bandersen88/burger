@@ -1,9 +1,11 @@
 var connection = require("./connection.js");
 
+// TODO: be careful with the callbacks
+
 // Remeber orm is an object, so comma's after all but the last definition
 var orm = {
     // Query 1
-    selectAll: function(tableInput) {
+    selectAll: function(tableInput, cb) {
         var queryString = "SELECT * FROM ??";
         connection.query(queryString, [tableInput], function(err, result) {
           if (err) throw err;
@@ -12,7 +14,9 @@ var orm = {
           for(let r of result) {
             console.log(r.id  + " - " + r.burger_name + " - " + r.devoured);
           }
+          cb(result);
         });
+        
       },
 
     // Query 2
