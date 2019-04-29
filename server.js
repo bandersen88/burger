@@ -1,8 +1,8 @@
 var express = require("express");
 
 // Use for Heroku Deployment
-// var PORT = process.env.PORT || 3000;
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
+// var PORT = 3000;
 
 var app = express();
 
