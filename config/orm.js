@@ -31,28 +31,32 @@ var orm = {
     },
 
     // Query 3
-    insertOne: function(burgerName, devouredVal) {
-        var queryString = "INSERT INTO ?? (??,??) VALUES (??,??)";
-        connection.query(queryString, ["burgers", "burger_name", "devoured", burgerName, devouredVal], function(err, result) {
+    insertOne: function(burgerName, devouredVal, cb) {
+        var queryString = "INSERT INTO burgers (burger_name,devoured) VALUES (?,?)";
+        console.log(queryString);
+        console.log(burgerName);
+        console.log(devouredVal);
+        connection.query(queryString, [burgerName, devouredVal], function(err, result) {
           if (err) throw err;
         console.log("Inserted One Row");
+        cb(result);
         });
       },
 
     // Query 4
     updateOne: function(tableInput,burgerName, devouredVal, condition) {
-        var queryString = "UPDATE ?? SET ?? = ??, ?? = ?? WHERE ??)";
+        var queryString = "UPDATE ?? SET ?? = ??, ?? = ?? WHERE ??";
         connection.query(queryString, [tableInput, "burger_name", burgerName, "devoured", devouredVal, condition], function(err, result) {
-          if (err) throw err;
+            if (err) throw err;
         console.log("Inserted One Row");
         });
       },
 
-    updateOneDevour: function(devouredVal, condition) {
-        var queryString = "UPDATE burgers SET devoured = ?? WHERE ??)";
+    updateOneDevour: function(devouredVal, condition, cb) {
+        var queryString = "UPDATE burgers SET devoured = ? WHERE id = ?";
         connection.query(queryString, [devouredVal, condition], function(err, result) {
-          if (err) throw err;
-        console.log("Inserted One Row");
+        if (err) throw err;
+        cb(result);
         });
       }
   };

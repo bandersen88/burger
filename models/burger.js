@@ -23,8 +23,8 @@ var burger = {
     });
   },
   devour: function(devourVal, condition, cb) {
-    orm.updateOneDevour(devourVal, condition, function(res) {
-      cb(res);
+    orm.updateOneDevour(devourVal.devourVal, condition, function(res) {
+    cb(res);
     });
   },
   //TODO: Set up Delete
