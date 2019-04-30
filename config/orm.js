@@ -33,9 +33,6 @@ var orm = {
     // Query 3
     insertOne: function(burgerName, devouredVal, cb) {
         var queryString = "INSERT INTO burgers (burger_name,devoured) VALUES (?,?)";
-        console.log(queryString);
-        console.log(burgerName);
-        console.log(devouredVal);
         connection.query(queryString, [burgerName, devouredVal], function(err, result) {
           if (err) throw err;
         console.log("Inserted One Row");
